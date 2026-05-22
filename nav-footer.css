@@ -1,0 +1,395 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ==========================================================================
+   Kgolo Excellence Academy - Shared Navigation and Footer Stylesheet
+   ========================================================================== */
+
+/* Typography & Base Reset (Applies to all matching elements) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333333;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   HEADER & STICKY NAVIGATION
+   ========================================================================== */
+header {
+    background: linear-gradient(135deg, #001f4d 0%, #003366 100%);
+    color: #ffffff;
+    padding: 12px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+/* Branding Logo */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: transform 0.3s ease;
+}
+
+.logo-container:hover {
+    transform: scale(1.02);
+}
+
+.logo-container img {
+    height: 55px;
+    width: 55px;
+    object-fit: cover;
+    border-radius: 50%;
+    background: #ffffff;
+    padding: 3px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    transition: all 0.4s ease;
+}
+
+.logo-container:hover img {
+    transform: rotate(360deg);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.site-name {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    background: linear-gradient(120deg, #ffffff 60%, #ffd700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+}
+
+/* Navigation Links (Desktop) */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+nav a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.3s ease;
+}
+
+/* Premium growing underline effect */
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffd700;
+    transform-origin: bottom right;
+    transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+nav a:hover {
+    color: #ffd700;
+}
+
+nav a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Active Page Highlight */
+nav a.active {
+    color: #ffd700;
+    font-weight: 700;
+}
+
+nav a.active::after {
+    transform: scaleX(1);
+    background-color: #ffd700;
+}
+
+/* Mobile Hamburger Menu Toggle */
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+    font-size: 32px;
+    color: #ffffff;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.menu-toggle:hover {
+    color: #ffd700;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (TABLET & SMARTPHONE)
+   ========================================================================== */
+@media (max-width: 900px) {
+    header {
+        padding: 12px 25px;
+    }
+    
+    .site-name {
+        font-size: 19px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex; /* Display toggle on screens <= 768px */
+    }
+
+    nav {
+        display: none; /* Hide default inline menu */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Sits flush under header */
+        right: 0;
+        width: 100%;
+        background: rgba(0, 31, 77, 0.98);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        padding: 30px 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        gap: 20px;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+        animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    nav.active {
+        display: flex;
+    }
+
+    nav a {
+        width: 100%;
+        padding: 12px 0;
+        font-size: 17px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    nav a:last-child {
+        border-bottom: none;
+    }
+
+    nav a::after {
+        display: none; /* Disable sliding underline on mobile */
+    }
+
+    nav a:hover, nav a.active {
+        color: #ffd700;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   PREMIUM THREE-COLUMN FOOTER
+   ========================================================================== */
+footer {
+    background: linear-gradient(135deg, #00122c 0%, #002244 100%);
+    color: #e2e8f0;
+    padding: 60px 40px 30px;
+    margin-top: 60px;
+    border-top: 3px solid #ffd700;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    position: relative;
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15);
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-col h3 {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h3::after {
+    content: '';
+    position: absolute;
+    width: 45px;
+    height: 3px;
+    background-color: #ffd700;
+    bottom: 0;
+    left: 0;
+    border-radius: 2px;
+}
+
+/* Col 1: Branding & Socials */
+.footer-about p {
+    font-size: 14px;
+    color: #a0aec0;
+    line-height: 1.7;
+}
+
+.socials {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.socials a {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.socials a:hover {
+    color: #001f4d;
+    background: #ffd700;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    border-color: #ffd700;
+}
+
+/* Col 2: Navigation Links */
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links a {
+    color: #a0aec0;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #ffd700;
+    transform: translateX(5px);
+}
+
+/* Col 3: Contact Info */
+.footer-contact p {
+    font-size: 14px;
+    color: #a0aec0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-contact i {
+    color: #ffd700;
+    font-size: 16px;
+    width: 20px;
+}
+
+/* Footer Bottom Credit */
+.footer-bottom {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 25px;
+    text-align: center;
+    font-size: 13px;
+    color: #718096;
+    margin-top: 20px;
+}
+
+/* Spacing and adjustment for mobile footers */
+@media (max-width: 768px) {
+    footer {
+        padding: 40px 20px 20px;
+        gap: 30px;
+        text-align: left;
+    }
+}
+
+/* Premium Form Success/Error Alert States & Dynamic Animations */
+.form-status {
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 15px;
+    display: none; /* Hidden by default */
+    align-items: center;
+    gap: 12px;
+    animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.form-status.success {
+    display: flex;
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+}
+
+.form-status.error {
+    display: flex;
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
