@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accounting Form 5 Practice Paper | Kgolo Excellence Academy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Premium Online Stylesheet */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;800&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #f0f4f8;
+      color: #333333;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+    .action-header {
+      max-width: 850px;
+      margin: 0 auto 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+    .action-header a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s;
+    }
+    .action-header a:hover {
+      color: #0055aa;
+    }
+    .print-btn {
+      background-color: #003366;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 10px rgba(0,51,102,0.2);
+      transition: all 0.3s;
+    }
+    .print-btn:hover {
+      background-color: #0055aa;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,85,170,0.3);
+    }
+    
+    /* Exam Paper Formatting */
+    .exam-paper {
+      max-width: 850px;
+      background: white;
+      margin: 0 auto;
+      padding: 60px 50px;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .exam-header {
+      text-align: center;
+      border-bottom: 3px double #333333;
+      padding-bottom: 25px;
+      margin-bottom: 30px;
+    }
+    .academy-logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 26px;
+      color: #003366;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+    .exam-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 10px;
+      color: #111;
+    }
+    .exam-meta {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+      background: #f8fafc;
+      padding: 10px 15px;
+      border-radius: 8px;
+    }
+    .instructions {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 40px;
+      border-radius: 8px;
+      font-size: 14px;
+      background-color: #fafafa;
+    }
+    .instructions h4 {
+      margin-bottom: 10px;
+      color: #003366;
+      font-weight: 700;
+    }
+    .instructions ul {
+      margin-left: 20px;
+    }
+    .instructions li {
+      margin-bottom: 5px;
+    }
+    
+    /* Questions section */
+    .question {
+      margin-bottom: 40px;
+      page-break-inside: avoid;
+    }
+    .q-number {
+      font-weight: 700;
+      color: #003366;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .q-text {
+      font-size: 15px;
+      margin-bottom: 15px;
+      color: #222;
+    }
+    .q-sub {
+      margin-left: 25px;
+      margin-bottom: 15px;
+    }
+    .q-sub-text {
+      margin-bottom: 10px;
+    }
+    .q-marks {
+      float: right;
+      font-weight: bold;
+      color: #555;
+      font-style: italic;
+    }
+    .working-space {
+      height: 120px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 6px;
+      margin: 15px 0;
+      background-color: #fafbfd;
+      position: relative;
+    }
+    .working-space::after {
+      content: 'Draw ledgers, tables, or write solutions in this space';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #94a3b8;
+      font-size: 13px;
+      font-style: italic;
+    }
+    
+    /* PRINT-ONLY STYLESHEET */
+    @media print {
+      body {
+        background-color: white;
+        color: black;
+        padding: 0;
+      }
+      .action-header {
+        display: none; /* Hide interactive header on paper */
+      }
+      .exam-paper {
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        border-radius: 0;
+      }
+      .working-space {
+        background-color: transparent;
+        border-color: #888888;
+      }
+      .working-space::after {
+        display: none;
+      }
+      .q-number {
+        color: black;
+      }
+      .exam-meta {
+        background: transparent;
+        border: 1px solid #ccc;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ONLINE NAV HEADER -->
+  <div class="action-header">
+    <a href="../resources.html"><i class="fas fa-arrow-left"></i> Back to Resources</a>
+    <button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print / Save as PDF</button>
+  </div>
+
+  <!-- EXAM PAPER CONTENT -->
+  <div class="exam-paper">
+    <div class="exam-header">
+      <div class="academy-logo">Kgolo Excellence Academy</div>
+      <div class="exam-title">Form 5 Practice Examination Paper</div>
+      <div style="font-weight: bold; margin-top: 5px;">ACCOUNTING</div>
+      <div class="exam-meta">
+        <span>Time Allowed: 2 Hours</span>
+        <span>Total Marks: 100</span>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <h4>Instructions to Candidates:</h4>
+      <ul>
+        <li>Write your full name in the spaces provided at the top of this sheet.</li>
+        <li>Answer ALL questions in this paper.</li>
+        <li>Use standard double-entry accounting principles in all ledgers and balancing.</li>
+        <li>Show all calculations clearly, as marks are awarded for intermediate steps.</li>
+        <li>All currency units are in Botswana Pula (P).</li>
+      </ul>
+    </div>
+
+    <!-- QUESTION 1: DOUBLE ENTRY PRINCIPLES -->
+    <div class="question">
+      <div class="q-number">Question 1 (Ledger Accounts)</div>
+      <div class="q-text">
+        Record the following business transactions for "Mpho Retailers" for the month of April 2026 into the T-accounts (Cash Account, Capital Account, and Purchases Account) using the double-entry system.
+        <div style="margin: 10px 0 10px 20px; font-size: 14px; color: #444;">
+          • April 1: Mpho started business with P50,000 cash.<br>
+          • April 5: Bought goods for resale paying P12,500 by cash.<br>
+          • April 12: Purchased office furniture on credit from Woodworks Ltd for P8,000.<br>
+          • April 20: Paid Woodworks Ltd P5,000 by cash as part-payment.
+        </div>
+        <span class="q-marks">[10 Marks]</span>
+      </div>
+      <div class="working-space" style="height: 250px;"></div>
+    </div>
+
+    <!-- QUESTION 2: TRIAL BALANCE PREPARATION -->
+    <div class="question">
+      <div class="q-number">Question 2 (Trial Balance)</div>
+      <div class="q-text">
+        The ledger balances of "Lekgolo & Sons" on 31 December 2025 were as follows:
+        <div style="margin: 10px 0 10px 20px; font-size: 14px; color: #444;">
+          Capital: P85,000 | Sales: P120,000 | Purchases: P75,000 | Cash at Bank: P24,000 | Rent Expense: P12,000 | Accounts Receivable: P32,000 | Accounts Payable: P18,000 | Equipment: P60,000.
+        </div>
+        Prepare a standard Trial Balance as of 31 December 2025, showing clearly the debit and credit column totals.
+        <span class="q-marks">[10 Marks]</span>
+      </div>
+      <div class="working-space" style="height: 220px;"></div>
+    </div>
+
+    <!-- QUESTION 3: ADJUSTING ENTRIES -->
+    <div class="question">
+      <div class="q-number">Question 3 (Adjusting Entries & Depreciation)</div>
+      <div class="q-text">
+        A business bought a delivery van on 1 January 2023 for P150,000. The business uses the reducing balance method of depreciation at a rate of 20% per annum.
+      </div>
+      <div class="q-sub">
+        <div class="q-sub-text">
+          (a) Calculate the depreciation expense and net book value of the delivery van for Year 1 (2023) and Year 2 (2024).
+          <span class="q-marks">[5 Marks]</span>
+        </div>
+        <div class="working-space" style="height: 100px;"></div>
+        
+        <div class="q-sub-text" style="margin-top: 15px;">
+          (b) Record the journal entry for the depreciation expense at 31 December 2024.
+          <span class="q-marks">[5 Marks]</span>
+        </div>
+        <div class="working-space" style="height: 100px;"></div>
+      </div>
+    </div>
+
+    <!-- QUESTION 4: CASH BOOK PREPARATION -->
+    <div class="question">
+      <div class="q-number">Question 4 (Three-Column Cash Book)</div>
+      <div class="q-text">
+        Prepare a Three-Column Cash Book (Cash, Bank, and Discount columns) for "Bosele Traders" from the following details, and balance it at the end of the month:
+        <div style="margin: 10px 0 10px 20px; font-size: 14px; color: #444;">
+          • May 1: Balances brought forward: Cash P3,500, Bank P15,200.<br>
+          • May 8: Paid rent by cheque P1,200.<br>
+          • May 15: Received cheque from J. Brown for P2,850 in full settlement of his debt of P3,000.<br>
+          • May 22: Cash sales deposited directly into bank P4,500.<br>
+          • May 29: Paid cash P800 to K. Black, who allowed us a cash discount of P50.
+        </div>
+        <span class="q-marks">[15 Marks]</span>
+      </div>
+      <div class="working-space" style="height: 250px;"></div>
+    </div>
+
+    <!-- QUESTION 5: FINANCIAL STATEMENTS -->
+    <div class="question">
+      <div class="q-number">Question 5 (Income Statement & Balance Sheet Structure)</div>
+      <div class="q-text">
+        State the basic Accounting Equation and explain the difference between Current Assets and Non-Current Assets, providing two examples of each in your description.
+        <span class="q-marks">[10 Marks]</span>
+      </div>
+      <div class="working-space" style="height: 200px;"></div>
+    </div>
+
+  </div>
+
+</body>
+</html>

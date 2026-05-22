@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematics Form 4 Practice Paper | Kgolo Excellence Academy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Premium Online Stylesheet */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;800&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #f0f4f8;
+      color: #333333;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+    .action-header {
+      max-width: 850px;
+      margin: 0 auto 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+    .action-header a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s;
+    }
+    .action-header a:hover {
+      color: #0055aa;
+    }
+    .print-btn {
+      background-color: #003366;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 10px rgba(0,51,102,0.2);
+      transition: all 0.3s;
+    }
+    .print-btn:hover {
+      background-color: #0055aa;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,85,170,0.3);
+    }
+    
+    /* Exam Paper Formatting */
+    .exam-paper {
+      max-width: 850px;
+      background: white;
+      margin: 0 auto;
+      padding: 60px 50px;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .exam-header {
+      text-align: center;
+      border-bottom: 3px double #333333;
+      padding-bottom: 25px;
+      margin-bottom: 30px;
+    }
+    .academy-logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 26px;
+      color: #003366;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+    .exam-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 10px;
+      color: #111;
+    }
+    .exam-meta {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+      background: #f8fafc;
+      padding: 10px 15px;
+      border-radius: 8px;
+    }
+    .instructions {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 40px;
+      border-radius: 8px;
+      font-size: 14px;
+      background-color: #fafafa;
+    }
+    .instructions h4 {
+      margin-bottom: 10px;
+      color: #003366;
+      font-weight: 700;
+    }
+    .instructions ul {
+      margin-left: 20px;
+    }
+    .instructions li {
+      margin-bottom: 5px;
+    }
+    
+    /* Questions section */
+    .question {
+      margin-bottom: 40px;
+      page-break-inside: avoid;
+    }
+    .q-number {
+      font-weight: 700;
+      color: #003366;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .q-text {
+      font-size: 15px;
+      margin-bottom: 15px;
+      color: #222;
+    }
+    .q-sub {
+      margin-left: 25px;
+      margin-bottom: 15px;
+    }
+    .q-sub-text {
+      margin-bottom: 10px;
+    }
+    .q-marks {
+      float: right;
+      font-weight: bold;
+      color: #555;
+      font-style: italic;
+    }
+    .working-space {
+      height: 120px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 6px;
+      margin: 15px 0;
+      background-color: #fafbfd;
+      position: relative;
+    }
+    .working-space::after {
+      content: 'Show your working in this space';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #94a3b8;
+      font-size: 13px;
+      font-style: italic;
+    }
+    
+    /* PRINT-ONLY STYLESHEET */
+    @media print {
+      body {
+        background-color: white;
+        color: black;
+        padding: 0;
+      }
+      .action-header {
+        display: none; /* Hide interactive header on paper */
+      }
+      .exam-paper {
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        border-radius: 0;
+      }
+      .working-space {
+        background-color: transparent;
+        border-color: #888888;
+      }
+      .working-space::after {
+        display: none;
+      }
+      .q-number {
+        color: black;
+      }
+      .exam-meta {
+        background: transparent;
+        border: 1px solid #ccc;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ONLINE NAV HEADER -->
+  <div class="action-header">
+    <a href="../resources.html"><i class="fas fa-arrow-left"></i> Back to Resources</a>
+    <button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print / Save as PDF</button>
+  </div>
+
+  <!-- EXAM PAPER CONTENT -->
+  <div class="exam-paper">
+    <div class="exam-header">
+      <div class="academy-logo">Kgolo Excellence Academy</div>
+      <div class="exam-title">Form 4 Practice Examination Paper</div>
+      <div style="font-weight: bold; margin-top: 5px;">MATHEMATICS</div>
+      <div class="exam-meta">
+        <span>Time Allowed: 2 Hours</span>
+        <span>Total Marks: 100</span>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <h4>Instructions to Candidates:</h4>
+      <ul>
+        <li>Write your full name in the spaces provided at the top of this sheet.</li>
+        <li>Answer ALL questions in this paper.</li>
+        <li>Write your answers and show your working clearly in the space provided.</li>
+        <li>Calculators may be used where appropriate.</li>
+        <li>Electronic devices and mobile phones are strictly prohibited.</li>
+      </ul>
+    </div>
+
+    <!-- QUESTION 1 -->
+    <div class="question">
+      <div class="q-number">Question 1</div>
+      <div class="q-text">
+        Solve the following quadratic equation using the quadratic formula, showing all steps of your working:
+        <div style="text-align: center; margin: 15px 0; font-weight: bold; font-size: 16px;">
+          3x² - 10x - 8 = 0
+        </div>
+        <span class="q-marks">[8 Marks]</span>
+      </div>
+      <div class="working-space"></div>
+    </div>
+
+    <!-- QUESTION 2 -->
+    <div class="question">
+      <div class="q-number">Question 2</div>
+      <div class="q-text">
+        A straight line passes through the points A(2, 5) and B(6, 13).
+      </div>
+      <div class="q-sub">
+        <div class="q-sub-text">
+          (a) Find the gradient (slope) of the line AB.
+          <span class="q-marks">[3 Marks]</span>
+        </div>
+        <div class="working-space" style="height: 80px;"></div>
+        
+        <div class="q-sub-text" style="margin-top: 15px;">
+          (b) Determine the equation of the line AB, giving your answer in the form y = mx + c.
+          <span class="q-marks">[4 Marks]</span>
+        </div>
+        <div class="working-space" style="height: 100px;"></div>
+      </div>
+    </div>
+
+    <!-- QUESTION 3 -->
+    <div class="question">
+      <div class="q-number">Question 3</div>
+      <div class="q-text">
+        In a right-angled triangle PQR, the right angle is at Q. The side PQ = 9 cm and QR = 12 cm.
+      </div>
+      <div class="q-sub">
+        <div class="q-sub-text">
+          (a) Calculate the length of the hypotenuse PR, showing your use of Pythagoras' theorem.
+          <span class="q-marks">[4 Marks]</span>
+        </div>
+        <div class="working-space" style="height: 90px;"></div>
+        
+        <div class="q-sub-text" style="margin-top: 15px;">
+          (b) Find the value of sin(∠QPR) and cos(∠QPR) in their simplest fraction forms.
+          <span class="q-marks">[4 Marks]</span>
+        </div>
+        <div class="working-space" style="height: 90px;"></div>
+      </div>
+    </div>
+
+    <!-- QUESTION 4 -->
+    <div class="question">
+      <div class="q-number">Question 4</div>
+      <div class="q-text">
+        Simplify the following algebraic expression completely:
+        <div style="text-align: center; margin: 15px 0; font-weight: bold; font-size: 16px;">
+          ((2x² - 8) / (x - 2))  ×  (3 / (x + 2))
+        </div>
+        <span class="q-marks">[8 Marks]</span>
+      </div>
+      <div class="working-space"></div>
+    </div>
+
+    <!-- QUESTION 5 -->
+    <div class="question">
+      <div class="q-number">Question 5</div>
+      <div class="q-text">
+        The table below shows the distribution of scores for 40 students in a physics quiz:
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0; text-align: center; font-size: 14px;">
+          <tr style="background: #f8fafc; border-bottom: 2px solid #ddd;">
+            <th style="padding: 10px; border: 1px solid #ddd;">Score Range</th>
+            <td style="padding: 10px; border: 1px solid #ddd;">1 - 5</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">6 - 10</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">11 - 15</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">16 - 20</td>
+          </tr>
+          <tr>
+            <th style="padding: 10px; border: 1px solid #ddd;">No. of Students</th>
+            <td style="padding: 10px; border: 1px solid #ddd;">5</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">12</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">15</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">8</td>
+          </tr>
+        </table>
+      </div>
+      <div class="q-sub">
+        <div class="q-sub-text">
+          (a) State the modal score interval.
+          <span class="q-marks">[2 Marks]</span>
+        </div>
+        <div class="working-space" style="height: 50px;"></div>
+        
+        <div class="q-sub-text" style="margin-top: 15px;">
+          (b) Estimate the mean score of the class to one decimal place, using class midpoints.
+          <span class="q-marks">[7 Marks]</span>
+        </div>
+        <div class="working-space" style="height: 150px;"></div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Language Form 5 Practice Paper | Kgolo Excellence Academy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Premium Online Stylesheet */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;800&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #f0f4f8;
+      color: #333333;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+    .action-header {
+      max-width: 850px;
+      margin: 0 auto 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+    .action-header a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s;
+    }
+    .action-header a:hover {
+      color: #0055aa;
+    }
+    .print-btn {
+      background-color: #003366;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 10px rgba(0,51,102,0.2);
+      transition: all 0.3s;
+    }
+    .print-btn:hover {
+      background-color: #0055aa;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,85,170,0.3);
+    }
+    
+    /* Exam Paper Formatting */
+    .exam-paper {
+      max-width: 850px;
+      background: white;
+      margin: 0 auto;
+      padding: 60px 50px;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .exam-header {
+      text-align: center;
+      border-bottom: 3px double #333333;
+      padding-bottom: 25px;
+      margin-bottom: 30px;
+    }
+    .academy-logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 26px;
+      color: #003366;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+    .exam-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 10px;
+      color: #111;
+    }
+    .exam-meta {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+      background: #f8fafc;
+      padding: 10px 15px;
+      border-radius: 8px;
+    }
+    .instructions {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 40px;
+      border-radius: 8px;
+      font-size: 14px;
+      background-color: #fafafa;
+    }
+    .instructions h4 {
+      margin-bottom: 10px;
+      color: #003366;
+      font-weight: 700;
+    }
+    .instructions ul {
+      margin-left: 20px;
+    }
+    .instructions li {
+      margin-bottom: 5px;
+    }
+    
+    /* Section dividers */
+    .section-divider {
+      background-color: #003366;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      padding: 8px 15px;
+      border-radius: 4px;
+      margin: 30px 0 20px;
+    }
+    
+    /* Reading passage styling */
+    .passage {
+      border-left: 4px solid #003366;
+      padding-left: 20px;
+      margin: 20px 0 30px;
+      font-style: italic;
+      color: #444;
+      text-align: justify;
+      font-size: 14.5px;
+    }
+    .passage p {
+      margin-bottom: 15px;
+    }
+    
+    /* Questions section */
+    .question {
+      margin-bottom: 35px;
+      page-break-inside: avoid;
+    }
+    .q-number {
+      font-weight: 700;
+      color: #003366;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .q-text {
+      font-size: 15px;
+      margin-bottom: 15px;
+      color: #222;
+    }
+    .q-marks {
+      float: right;
+      font-weight: bold;
+      color: #555;
+      font-style: italic;
+    }
+    .working-space {
+      height: 120px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 6px;
+      margin: 15px 0;
+      background-color: #fafbfd;
+      position: relative;
+    }
+    .working-space::after {
+      content: 'Write your essay outline or answers in this space';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #94a3b8;
+      font-size: 13px;
+      font-style: italic;
+    }
+    
+    /* PRINT-ONLY STYLESHEET */
+    @media print {
+      body {
+        background-color: white;
+        color: black;
+        padding: 0;
+      }
+      .action-header {
+        display: none; /* Hide interactive header on paper */
+      }
+      .exam-paper {
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        border-radius: 0;
+      }
+      .working-space {
+        background-color: transparent;
+        border-color: #888888;
+      }
+      .working-space::after {
+        display: none;
+      }
+      .q-number {
+        color: black;
+      }
+      .exam-meta {
+        background: transparent;
+        border: 1px solid #ccc;
+      }
+      .passage {
+        border-left-color: black;
+      }
+      .section-divider {
+        background-color: #eee;
+        color: black;
+        border: 1px solid #000;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ONLINE NAV HEADER -->
+  <div class="action-header">
+    <a href="../resources.html"><i class="fas fa-arrow-left"></i> Back to Resources</a>
+    <button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print / Save as PDF</button>
+  </div>
+
+  <!-- EXAM PAPER CONTENT -->
+  <div class="exam-paper">
+    <div class="exam-header">
+      <div class="academy-logo">Kgolo Excellence Academy</div>
+      <div class="exam-title">Form 5 Practice Examination Paper</div>
+      <div style="font-weight: bold; margin-top: 5px;">ENGLISH LANGUAGE</div>
+      <div class="exam-meta">
+        <span>Time Allowed: 2 Hours</span>
+        <span>Total Marks: 100</span>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <h4>Instructions to Candidates:</h4>
+      <ul>
+        <li>Write your full name in the spaces provided at the top of this sheet.</li>
+        <li>This paper contains two sections: Section A (Composition) and Section B (Comprehension).</li>
+        <li>Answer ONE question in Section A and ALL questions in Section B.</li>
+        <li>Write your compositions and answers clearly in the spaces provided.</li>
+        <li>Pay close attention to grammar, punctuation, and spelling.</li>
+      </ul>
+    </div>
+
+    <!-- SECTION A -->
+    <div class="section-divider">SECTION A: CONTINUOUS WRITING (50 Marks)</div>
+    
+    <div style="margin-bottom: 20px; font-size: 14.5px; font-weight: 500;">
+      Write a composition of between 350 and 450 words on ONE of the following topics.
+    </div>
+
+    <!-- PROMPT 1 -->
+    <div class="question">
+      <div class="q-number">Topic 1 (Narrative)</div>
+      <div class="q-text">
+        Write a story that ends with the words: <i>"...I looked back one last time and realized that my life would never be the same again."</i>
+        <span class="q-marks">[50 Marks]</span>
+      </div>
+      <div class="working-space" style="height: 100px;"></div>
+    </div>
+
+    <!-- PROMPT 2 -->
+    <div class="question">
+      <div class="q-number">Topic 2 (Argumentative)</div>
+      <div class="q-text">
+        "Social media platforms have done more to isolate people than to bring them together." Do you agree? Write an essay supporting your viewpoint.
+        <span class="q-marks">[50 Marks]</span>
+      </div>
+      <div class="working-space" style="height: 100px;"></div>
+    </div>
+
+    <!-- PROMPT 3 -->
+    <div class="question">
+      <div class="q-number">Topic 3 (Descriptive)</div>
+      <div class="q-text">
+        Describe a local market in your town during its busiest hours. Focus on the sounds, smells, sights, and interactions among buyers and sellers.
+        <span class="q-marks">[50 Marks]</span>
+      </div>
+      <div class="working-space" style="height: 100px;"></div>
+    </div>
+
+    <!-- SECTION B -->
+    <div class="section-divider">SECTION B: COMPREHENSION & SUMMARY (50 Marks)</div>
+    
+    <div style="margin-bottom: 15px; font-size: 14.5px; font-weight: 500;">
+      Read the following passage carefully and answer the structured questions that follow.
+    </div>
+
+    <!-- PASSAGE -->
+    <div class="passage">
+      <p>
+        [1] The sun rose like a gold coin tossed into a slate-colored sky, casting its first weak beams over the quiet village of Kgale. It was the morning of the great harvest, an event that occurred once every three years. For months, the villagers had worked the soil under a punishing drought, their calloused hands and aching backs a testament to their dedication. Now, the fields of golden sorghum waved under a gentle breeze, ready to reward their persistence.
+      </p>
+      <p>
+        [2] At the edge of the field stood Thabo, a young farmer whose family had cultivated this land for generations. His heart beat with a mixture of excitement and heavy anxiety. The drought had taken its toll, and this crop was their final hope. If the yield was poor, many families would have to leave their ancestral home for the crowded city streets in search of labor. He knelt down, running the rich, dry soil through his fingers, praying that the earth had been kind.
+      </p>
+      <p>
+        [3] As the village elders blew the traditional horn, indicating the start of the harvest, Thabo and his peers swung their scythes in perfect synchronization. The rhythmic sound of cutting stalks echoed through the valley. By mid-afternoon, the sweat ran freely, but no one slowed down. The communal spirit was alive; children carried cool water in clay pots, and elders sang traditional songs of encouragement. It was a beautiful display of unity that no drought could dry up.
+      </p>
+    </div>
+
+    <!-- QUESTIONS -->
+    <!-- QUESTION 1 -->
+    <div class="question">
+      <div class="q-number">Question 1</div>
+      <div class="q-text">
+        From Paragraph 1: Why was this particular harvest so significant to the villagers of Kgale? Give two reasons based on the text.
+        <span class="q-marks">[4 Marks]</span>
+      </div>
+      <div class="working-space" style="height: 90px;"></div>
+    </div>
+
+    <!-- QUESTION 2 -->
+    <div class="question">
+      <div class="q-number">Question 2</div>
+      <div class="q-text">
+        From Paragraph 2: Explain Thabo's mixed feelings on this morning. What was his greatest fear if the harvest failed?
+        <span class="q-marks">[4 Marks]</span>
+      </div>
+      <div class="working-space" style="height: 90px;"></div>
+    </div>
+
+    <!-- QUESTION 3 -->
+    <div class="question">
+      <div class="q-number">Question 3</div>
+      <div class="q-text">
+        From Paragraph 3: Identify a metaphor used by the writer to describe the community's resilience during the drought.
+        <span class="q-marks">[3 Marks]</span>
+      </div>
+      <div class="working-space" style="height: 80px;"></div>
+    </div>
+
+    <!-- QUESTION 4 -->
+    <div class="question">
+      <div class="q-number">Question 4 (Vocabulary)</div>
+      <div class="q-text">
+        Find words or phrases in the passage that have the same or similar meaning as:
+        <div style="margin: 10px 0 0 20px;">
+          (i) <b>testament</b> (Paragraph 1): ________________________<br>
+          (ii) <b>cultivated</b> (Paragraph 2): ________________________<br>
+          (iii) <b>synchronization</b> (Paragraph 3): ________________________
+        </div>
+        <span class="q-marks">[3 Marks]</span>
+      </div>
+      <div class="working-space" style="height: 60px;"></div>
+    </div>
+
+    <!-- QUESTION 5 -->
+    <div class="question">
+      <div class="q-number">Question 5 (Summary Writing)</div>
+      <div class="q-text">
+        In not more than 80 words, summarize the ways in which the community showed unity and supported each other during the day of the harvest, as described in Paragraph 3. Write your summary in a single continuous paragraph.
+        <span class="q-marks">[10 Marks]</span>
+      </div>
+      <div class="working-space" style="height: 150px;"></div>
+    </div>
+
+  </div>
+
+</body>
+</html>
