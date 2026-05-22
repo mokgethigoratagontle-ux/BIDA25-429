@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Quiz | Kgolo Excellence Academy</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="nav-footer.css">
+  
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+
+  <!-- Shared Navigation Script -->
+  <script src="navigation.js" defer></script>
+
+  <style>
+    .hero {
+      background: linear-gradient(135deg, #001f4d 0%, #003366 100%);
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 16px;
+      color: #e2e8f0;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .quiz-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      min-height: 450px;
+    }
+
+    .quiz-card {
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border-top: 5px solid #003366;
+      transition: all 0.4s ease;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SUBJECT SELECTOR VIEW */
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .subject-btn {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 25px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    .subject-btn:hover {
+      border-color: #ffd700;
+      background: white;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+    .subject-btn i {
+      font-size: 32px;
+      color: #003366;
+    }
+    .subject-btn span {
+      font-weight: 700;
+      color: #003366;
+      font-size: 16px;
+    }
+
+    /* PROGRESS BAR */
+    .progress-wrapper {
+      margin-bottom: 25px;
+    }
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 600;
+      color: #4a5568;
+      margin-bottom: 8px;
+    }
+    .progress-bar-bg {
+      background: #e2e8f0;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      background: #ffd700;
+      height: 100%;
+      width: 0%;
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+
+    /* QUESTION PANEL */
+    .question-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #003366;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .option-btn {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 15px 20px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+      color: #333;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+    .option-btn:hover:not(.disabled) {
+      border-color: #003366;
+      background: #f1f5f9;
+    }
+    .option-btn.correct {
+      border-color: #198754 !important;
+      background-color: #d1e7dd !important;
+      color: #0f5132 !important;
+      font-weight: 700;
+    }
+    .option-btn.incorrect {
+      border-color: #dc3545 !important;
+      background-color: #f8d7da !important;
+      color: #842029 !important;
+    }
+    .option-btn.disabled {
+      cursor: not-allowed;
+    }
+
+    /* RESULTS PAGE */
+    .results-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .score-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #003366;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 10px 20px rgba(0,51,102,0.2);
+    }
+    .score-circle h2 {
+      font-size: 36px;
+      font-weight: 800;
+      margin: 0;
+      color: #ffd700;
+    }
+    .score-circle span {
+      font-size: 14px;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+    .result-badge {
+      font-size: 18px;
+      font-weight: 800;
+      color: #003366;
+      margin-bottom: 10px;
+    }
+    .result-feedback {
+      font-size: 15px;
+      color: #4a5568;
+      max-width: 500px;
+      margin: 0 auto 30px;
+    }
+
+    .review-item {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 15px 0;
+      text-align: left;
+    }
+    .review-item:last-child {
+      border-bottom: none;
+    }
+    .review-q {
+      font-weight: 700;
+      color: #003366;
+      margin-bottom: 5px;
+    }
+    .review-ans {
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .review-exp {
+      font-size: 13px;
+      font-style: italic;
+      color: #718096;
+      margin-top: 5px;
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .action-btn {
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: all 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .action-btn:hover {
+      background: #0055aa;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,85,170,0.3);
+      color: white;
+    }
+    .action-btn.secondary {
+      background: #f1f5f9;
+      color: #003366;
+      border: 2px solid #003366;
+    }
+    .action-btn.secondary:hover {
+      background: #e2e8f0;
+      color: #003366;
+      box-shadow: none;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="index.html" class="logo-container">
+      <img src="Images.wmd/Kgolo Excellence Academy Logo.png" alt="Kgolo Logo">
+      <span class="site-name">Kgolo Excellence Academy</span>
+    </a>
+
+    <!-- Hamburger Icon Toggle -->
+    <div class="menu-toggle">☰</div>
+
+    <nav id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="tutoring.html">Tutoring Programs</a>
+      <a href="resources.html">Resources</a>
+      <a href="contact.html">Contact</a>
+      <a href="registration.html">Registration</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Interactive Practice Quiz</h1>
+    <p>Test your academic knowledge across various subjects and receive detailed, real-time performance insights.</p>
+  </section>
+
+  <!-- MAIN CONTAINER -->
+  <div class="quiz-container">
+    <div class="quiz-card" id="quiz-card">
+      <!-- SELECT SUBJECT VIEW -->
+      <div id="subject-view">
+        <h2 style="color:#003366; font-size:24px; font-weight:800; text-align:center;">Select a Subject to Begin</h2>
+        <p style="color:#4a5568; text-align:center; font-size:15px; margin-bottom:20px;">All quizzes are structured according to the latest junior and senior secondary curricula.</p>
+        
+        <div class="subject-grid">
+          <div class="subject-btn" onclick="startQuiz('mathematics')">
+            <i class="fas fa-calculator"></i>
+            <span>Mathematics</span>
+          </div>
+          <div class="subject-btn" onclick="startQuiz('science')">
+            <i class="fas fa-flask"></i>
+            <span>Integrated Science</span>
+          </div>
+          <div class="subject-btn" onclick="startQuiz('biology')">
+            <i class="fas fa-dna"></i>
+            <span>Biology</span>
+          </div>
+          <div class="subject-btn" onclick="startQuiz('chemistry')">
+            <i class="fas fa-atom"></i>
+            <span>Chemistry</span>
+          </div>
+          <div class="subject-btn" onclick="startQuiz('physics')">
+            <i class="fas fa-bolt"></i>
+            <span>Physics</span>
+          </div>
+          <div class="subject-btn" onclick="startQuiz('english')">
+            <i class="fas fa-book"></i>
+            <span>English Language</span>
+          </div>
+          <div class="subject-btn" onclick="startQuiz('accounting')">
+            <i class="fas fa-calculator"></i>
+            <span>Accounting</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIVE QUIZ VIEW -->
+      <div id="quiz-view" style="display:none;">
+        <div class="progress-wrapper">
+          <div class="progress-info">
+            <span id="subject-title">Subject Quiz</span>
+            <span id="question-progress">Question 1 of 5</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progress-bar"></div>
+          </div>
+        </div>
+
+        <div class="question-title" id="question-text">
+          Question Text goes here...
+        </div>
+
+        <div class="options-list" id="options-container">
+          <!-- Dynamically filled -->
+        </div>
+
+        <div style="text-align:right; margin-top:25px;">
+          <button class="action-btn" id="next-btn" style="display:none;" onclick="loadNextQuestion()">
+            Next Question <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- RESULTS VIEW -->
+      <div id="results-view" style="display:none;">
+        <div class="results-header">
+          <div class="score-circle">
+            <h2 id="result-score">4/5</h2>
+            <span>Correct Answers</span>
+          </div>
+          <div class="result-badge" id="result-badge">EXCELLENT WORK!</div>
+          <div class="result-feedback" id="result-feedback">
+            You show a strong understanding of this subject. Keep review checklists and notes handy for exams.
+          </div>
+        </div>
+
+        <h3 style="color:#003366; font-size:18px; font-weight:800; border-bottom:2px solid #e2e8f0; padding-bottom:8px; margin-bottom:15px; text-align:left;">
+          Question Review & Explanations
+        </h3>
+        
+        <div id="review-container">
+          <!-- Dynamically filled -->
+        </div>
+
+        <div class="btn-row">
+          <button class="action-btn" onclick="restartQuiz()"><i class="fas fa-redo"></i> Try Again</button>
+          <button class="action-btn secondary" onclick="showSubjects()"><i class="fas fa-th-large"></i> Other Subject</button>
+          <a href="resources.html" class="action-btn secondary"><i class="fas fa-arrow-left"></i> Study Resources</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-col footer-about">
+      <h3>Kgolo Academy</h3>
+      <p>Empowering students through structured tutoring and high-quality learning resources tailored to different learning levels.</p>
+      <div class="socials">
+        <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="tutoring.html">Tutoring Programs</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="registration.html">Registration</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col footer-contact">
+      <h3>Contact Us</h3>
+      <p><i class="fas fa-phone-alt"></i> +267 75752873</p>
+      <p><i class="fas fa-envelope"></i> kgoloexcellenceaca@gmail.com</p>
+      <p><i class="fas fa-map-marker-alt"></i> Plot 4725, Maruapula Way, Gaborone, Botswana</p>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Kgolo Excellence Academy. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- INTERACTIVE QUIZ APPLICATION LOGIC -->
+  <script>
+    const quizzes = {
+      mathematics: [
+        {
+          question: "Solve the equation 2x + 7 = 15. What is the value of x?",
+          options: ["x = 2", "x = 4", "x = 5", "x = 8"],
+          correct: 1,
+          explanation: "Subtract 7 from both sides to get 2x = 8. Dividing by 2 gives x = 4."
+        },
+        {
+          question: "What is the gradient (slope) of the line passing through points A(1, 3) and B(3, 7)?",
+          options: ["Gradient = 1", "Gradient = 2", "Gradient = 3", "Gradient = 4"],
+          correct: 1,
+          explanation: "Gradient m = (y2 - y1) / (x2 - x1) = (7 - 3) / (3 - 1) = 4 / 2 = 2."
+        },
+        {
+          question: "In a right-angled triangle, the side opposite angle θ is 6 cm and the hypotenuse is 10 cm. Find sin(θ).",
+          options: ["sin(θ) = 0.5", "sin(θ) = 0.6", "sin(θ) = 0.8", "sin(θ) = 1.0"],
+          correct: 1,
+          explanation: "sin(θ) = Opposite / Hypotenuse = 6 / 10 = 0.6."
+        },
+        {
+          question: "If log10(x) = 3, what is the value of x?",
+          options: ["x = 30", "x = 100", "x = 300", "x = 1000"],
+          correct: 3,
+          explanation: "By logarithmic definition, log10(x) = 3 means x = 10³ = 1000."
+        },
+        {
+          question: "What is the expanded form of (a - b)(a + b)?",
+          options: ["a² - 2ab + b²", "a² + b²", "a² - b²", "a² + 2ab + b²"],
+          correct: 2,
+          explanation: "Expanding the brackets gives a² + ab - ba - b². The middle terms cancel out, leaving the difference of squares: a² - b²."
+        }
+      ],
+      science: [
+        {
+          question: "What is the primary product of plant photosynthesis released into the atmosphere?",
+          options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Water vapor"],
+          correct: 1,
+          explanation: "Photosynthesis uses water, CO2 and sunlight to make glucose and releases Oxygen (O2) gas as a vital byproduct."
+        },
+        {
+          question: "What form of heat transfer does not require a medium and occurs through empty space?",
+          options: ["Conduction", "Convection", "Radiation", "Evaporation"],
+          correct: 2,
+          explanation: "Radiation transfer occurs through electromagnetic waves and can travel through a vacuum, like sunlight traveling to Earth."
+        },
+        {
+          question: "Which blood vessel type carries oxygenated blood away from the heart to the rest of the body?",
+          options: ["Veins", "Capillaries", "Arteries", "Venules"],
+          correct: 2,
+          explanation: "Arteries carry oxygenated blood under pressure away from the heart, with the pulmonary artery being the sole exception."
+        },
+        {
+          question: "What is the chemical formula for ordinary table salt?",
+          options: ["HCl", "NaOH", "NaCl", "NaHCO3"],
+          correct: 2,
+          explanation: "Ordinary table salt is Sodium Chloride, which has the chemical formula NaCl."
+        },
+        {
+          question: "What is the SI unit of electric current?",
+          options: ["Volt", "Ampere", "Ohm", "Watt"],
+          correct: 1,
+          explanation: "The Ampere (A) is the SI base unit of electric current, named after André-Marie Ampère."
+        }
+      ],
+      biology: [
+        {
+          question: "Which of the following organelles is known as the 'powerhouse of the cell'?",
+          options: ["Nucleus", "Ribosome", "Chloroplast", "Mitochondrion"],
+          correct: 3,
+          explanation: "The mitochondrion is where cellular respiration occurs to generate ATP, the chemical energy currency of cells."
+        },
+        {
+          question: "Which blood cell type is responsible for carrying oxygen throughout the human body?",
+          options: ["White Blood Cells", "Red Blood Cells", "Platelets", "Lymphocytes"],
+          correct: 1,
+          explanation: "Red blood cells (erythrocytes) contain hemoglobin, a protein molecule that binds and transports oxygen."
+        },
+        {
+          question: "What is the primary site of nutrient absorption in the human digestive system?",
+          options: ["Stomach", "Large Intestine", "Small Intestine", "Esophagus"],
+          correct: 2,
+          explanation: "The small intestine has structural folds called villi and microvilli that vastly expand the surface area to absorb digested nutrients."
+        },
+        {
+          question: "Which of these is a plant hormone responsible for fruit ripening?",
+          options: ["Auxin", "Gibberellin", "Ethylene", "Cytokinin"],
+          correct: 2,
+          explanation: "Ethylene is a gaseous plant hormone that coordinates and stimulates the ripening of fruits."
+        },
+        {
+          question: "What is the genetic molecule that stores the hereditary code of living organisms?",
+          options: ["RNA", "DNA", "ATP", "Protein"],
+          correct: 1,
+          explanation: "DNA (Deoxyribonucleic Acid) is the double-helix molecule that contains genetic blueprints."
+        }
+      ],
+      chemistry: [
+        {
+          question: "What is the pH level of pure, neutral water at room temperature?",
+          options: ["pH = 0", "pH = 5", "pH = 7", "pH = 14"],
+          correct: 2,
+          explanation: "Pure water is neutral and has a pH of exactly 7. Values lower than 7 are acidic, and higher are basic/alkaline."
+        },
+        {
+          question: "Which element has the atomic number 1 on the periodic table?",
+          options: ["Helium", "Hydrogen", "Lithium", "Oxygen"],
+          correct: 1,
+          explanation: "Hydrogen (H) has one proton in its nucleus, making its atomic number 1."
+        },
+        {
+          question: "What type of chemical bonding involves the complete transfer of electrons from one atom to another?",
+          options: ["Covalent Bonding", "Metallic Bonding", "Hydrogen Bonding", "Ionic Bonding"],
+          correct: 3,
+          explanation: "Ionic bonding involves the complete transfer of valence electrons, creating positive and negative ions that attract each other."
+        },
+        {
+          question: "Which of the following is a noble gas (Group 18 element) that is inert?",
+          options: ["Nitrogen", "Oxygen", "Argon", "Chlorine"],
+          correct: 2,
+          explanation: "Argon (Ar) is a noble gas with a full outer electron shell, making it extremely unreactive (inert)."
+        },
+        {
+          question: "What is the state change called when a solid turns directly into a gas without melting first?",
+          options: ["Condensation", "Sublimation", "Evaporation", "Deposition"],
+          correct: 1,
+          explanation: "Sublimation is the transition of a substance directly from the solid to the gas state (e.g. Dry Ice or Iodine vapor)."
+        }
+      ],
+      physics: [
+        {
+          question: "What is the gravitational acceleration (g) near the Earth's surface approximately equal to?",
+          options: ["5.8 m/s²", "9.8 m/s²", "12.4 m/s²", "15.0 m/s²"],
+          correct: 1,
+          explanation: "Under standard gravity, the acceleration of an object in free fall is approximately 9.8 m/s²."
+        },
+        {
+          question: "According to Newton's Second Law of Motion, Force is equal to mass multiplied by what?",
+          options: ["Velocity", "Distance", "Time", "Acceleration"],
+          correct: 3,
+          explanation: "Newton's second law is stated mathematically as F = ma (Force = Mass × Acceleration)."
+        },
+        {
+          question: "What is the speed of light in a vacuum approximately equal to?",
+          options: ["300,000 m/s", "3,000,000 m/s", "30,000,000 m/s", "300,000,000 m/s"],
+          correct: 3,
+          explanation: "Light travels through a vacuum at approximately 3.00 × 10⁸ meters per second (300,000 km/s)."
+        },
+        {
+          question: "Which law states that energy cannot be created or destroyed, only transformed?",
+          options: ["Law of Conservation of Mass", "Law of Thermodynamics", "Law of Conservation of Energy", "Ohm's Law"],
+          correct: 2,
+          explanation: "The Law of Conservation of Energy states that the total energy in an isolated system remains constant; it can only change form."
+        },
+        {
+          question: "What physical property describes a material's opposition to the flow of electric current?",
+          options: ["Voltage", "Capacitance", "Inductance", "Resistance"],
+          correct: 3,
+          explanation: "Electrical resistance (measured in Ohms, Ω) represents how much a material opposes current flow."
+        }
+      ],
+      english: [
+        {
+          question: "Identify the conjunction in this sentence: 'Although it rained heavily, we walked to the library.'",
+          options: ["heavily", "Although", "walked", "library"],
+          correct: 1,
+          explanation: "'Although' is a subordinating conjunction introducing a concession clause."
+        },
+        {
+          question: "Choose the correct spelling of the following word:",
+          options: ["Accomodation", "Acommodation", "Accommodation", "Acomodation"],
+          correct: 2,
+          explanation: "The correct spelling is 'Accommodation' (double 'c' and double 'm')."
+        },
+        {
+          question: "What is the antonym of the word 'BENEVOLENT'?",
+          options: ["Kind", "Malevolent", "Generous", "Indifferent"],
+          correct: 1,
+          explanation: "'Benevolent' means well-meaning and kindly. Its direct antonym is 'Malevolent', which means wishing evil or harm to others."
+        },
+        {
+          question: "Select the sentence written in the passive voice:",
+          options: ["The teacher graded the papers.", "The papers were graded by the teacher.", "The teacher was grading the papers.", "The teacher had graded the papers."],
+          correct: 1,
+          explanation: "In active voice, the subject acts. In 'The papers were graded by the teacher', the subject (papers) receives the action (passive)."
+        },
+        {
+          question: "What figure of speech is used in: 'The wind whispered secrets through the trees'?",
+          options: ["Simile", "Metaphor", "Personification", "Hyperbole"],
+          correct: 2,
+          explanation: "Giving human qualities ('whispered secrets') to non-human things (the wind) is called personification."
+        }
+      ],
+      accounting: [
+        {
+          question: "According to the fundamental accounting equation, Assets are always equal to Liabilities plus what?",
+          options: ["Expenses", "Revenue", "Owner's Equity (Capital)", "Drawings"],
+          correct: 2,
+          explanation: "The accounting equation is: Assets = Liabilities + Owner's Equity (Capital)."
+        },
+        {
+          question: "Which financial document contains a summary list of all ledger balances to test mathematical accuracy?",
+          options: ["Trial Balance", "Income Statement", "Cash Book", "Ledger Ledger"],
+          correct: 0,
+          explanation: "A Trial Balance is prepared to test the equality of total debits and credits from the ledgers."
+        },
+        {
+          question: "When a business sells goods on credit, which account should be debited under double-entry?",
+          options: ["Sales Account", "Cash Account", "Accounts Receivable (Debtor)", "Accounts Payable (Creditor)"],
+          correct: 2,
+          explanation: "For credit sales, you debit Accounts Receivable (asset increasing) and credit Sales Account (revenue increasing)."
+        },
+        {
+          question: "Which of the following is categorized as a Current Liability?",
+          options: ["Bank Loan (5-year)", "Accounts Payable (Trade Creditors)", "Office Equipment", "Inventory"],
+          correct: 1,
+          explanation: "Accounts payable are current liabilities because they represent obligations expected to be settled within one year."
+        },
+        {
+          question: "What type of account is 'Drawings' classified as?",
+          options: ["Asset Account", "Liability Account", "Contra-Equity Account", "Expense Account"],
+          correct: 2,
+          explanation: "Drawings represents the withdrawal of capital by the owner, reducing equity. It is a contra-equity account."
+        }
+      ]
+    };
+
+    let currentSubject = "";
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let userAnswers = [];
+
+    function startQuiz(subject) {
+      currentSubject = subject;
+      currentQuestionIndex = 0;
+      score = 0;
+      userAnswers = [];
+
+      document.getElementById("subject-view").style.display = "none";
+      document.getElementById("quiz-view").style.display = "block";
+      document.getElementById("results-view").style.display = "none";
+
+      const titleMap = {
+        mathematics: "Mathematics - Form 4",
+        science: "Integrated Science - Form 4",
+        biology: "Biology - Form 4",
+        chemistry: "Chemistry - Form 5",
+        physics: "Physics - Form 5",
+        english: "English Language - Form 5",
+        accounting: "Accounting - Form 5"
+      };
+
+      document.getElementById("subject-title").innerText = titleMap[subject] || "Subject Quiz";
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      const quiz = quizzes[currentSubject];
+      const q = quiz[currentQuestionIndex];
+
+      // Progress bar and details
+      document.getElementById("question-progress").innerText = `Question ${currentQuestionIndex + 1} of ${quiz.length}`;
+      const progressPercent = ((currentQuestionIndex) / quiz.length) * 100;
+      document.getElementById("progress-bar").style.width = `${progressPercent}%`;
+
+      // Set text
+      document.getElementById("question-text").innerText = q.question;
+
+      // Render options
+      const container = document.getElementById("options-container");
+      container.innerHTML = "";
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.innerHTML = `<span>${opt}</span><i class="far fa-circle"></i>`;
+        btn.onclick = () => selectOption(idx);
+        container.appendChild(btn);
+      });
+
+      document.getElementById("next-btn").style.display = "none";
+    }
+
+    function selectOption(selectedIdx) {
+      const quiz = quizzes[currentSubject];
+      const q = quiz[currentQuestionIndex];
+
+      userAnswers.push(selectedIdx);
+
+      const options = document.querySelectorAll(".option-btn");
+      
+      // Disable further clicks
+      options.forEach((btn, idx) => {
+        btn.classList.add("disabled");
+        btn.onclick = null; // Remove handler
+        
+        // Show correct answers in green
+        if (idx === q.correct) {
+          btn.classList.add("correct");
+          btn.querySelector("i").className = "fas fa-check-circle";
+        }
+      });
+
+      if (selectedIdx === q.correct) {
+        score++;
+      } else {
+        // Highlight incorrect choice
+        options[selectedIdx].classList.add("incorrect");
+        options[selectedIdx].querySelector("i").className = "fas fa-times-circle";
+      }
+
+      document.getElementById("next-btn").style.display = "inline-flex";
+    }
+
+    function loadNextQuestion() {
+      currentQuestionIndex++;
+      const quiz = quizzes[currentSubject];
+
+      if (currentQuestionIndex < quiz.length) {
+        loadQuestion();
+      } else {
+        // End of quiz, show progress final fill
+        document.getElementById("progress-bar").style.width = "100%";
+        showResults();
+      }
+    }
+
+    function showResults() {
+      const quiz = quizzes[currentSubject];
+      
+      document.getElementById("quiz-view").style.display = "none";
+      document.getElementById("results-view").style.display = "block";
+
+      document.getElementById("result-score").innerText = `${score} / ${quiz.length}`;
+
+      const percent = (score / quiz.length) * 100;
+      let badge = "";
+      let feedback = "";
+
+      if (percent === 100) {
+        badge = "PERFECT SCORE! 🏆";
+        feedback = "Outstanding! You got every question right. You are fully prepared to excel in your final examinations.";
+      } else if (percent >= 80) {
+        badge = "EXCELLENT WORK! 🌟";
+        feedback = "Fantastic performance! You have a solid comprehension of this syllabus. Keep it up!";
+      } else if (percent >= 60) {
+        badge = "GOOD EFFORT! 👍";
+        feedback = "Great attempt! You got a solid passing grade. Review the study guide notes briefly to touch up your knowledge.";
+      } else {
+        badge = "KEEP STUDYING! 📚";
+        feedback = "Keep practicing! We highly recommend downloading the subject notes and reviewing the areas you missed.";
+      }
+
+      document.getElementById("result-badge").innerText = badge;
+      document.getElementById("result-feedback").innerText = feedback;
+
+      // Populate review section
+      const container = document.getElementById("review-container");
+      container.innerHTML = "";
+
+      quiz.forEach((q, idx) => {
+        const uAns = userAnswers[idx];
+        const isCorrect = (uAns === q.correct);
+
+        const item = document.createElement("div");
+        item.className = "review-item";
+        item.innerHTML = `
+          <div class="review-q">${idx + 1}. ${q.question}</div>
+          <div class="review-ans" style="color:${isCorrect ? '#198754' : '#dc3545'}; font-weight: 600;">
+            <i class="fas ${isCorrect ? 'fa-check' : 'fa-times'}"></i> Your Answer: ${q.options[uAns]}
+          </div>
+          ${!isCorrect ? `<div class="review-ans" style="color:#198754; font-weight:600;"><i class="fas fa-check"></i> Correct Answer: ${q.options[q.correct]}</div>` : ''}
+          <div class="review-exp"><strong>Explanation:</strong> ${q.explanation}</div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function restartQuiz() {
+      startQuiz(currentSubject);
+    }
+
+    function showSubjects() {
+      document.getElementById("subject-view").style.display = "block";
+      document.getElementById("quiz-view").style.display = "none";
+      document.getElementById("results-view").style.display = "none";
+    }
+  </script>
+</body>
+</html>
